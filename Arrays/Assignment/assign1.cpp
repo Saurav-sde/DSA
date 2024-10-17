@@ -53,3 +53,24 @@ int search(int *arr,int n,int target)
     }
     return -1;
 }
+
+
+// max SubArray Product
+
+int maxSubArrayProduct(int *arr,int n)
+{
+    int pre = 1;
+    int suff = 1;
+    int maxProduct = INT8_MIN;
+    for(int i=0;i<n;i++)
+    {
+        if(pre == 0)
+            pre = 1;
+        if(suff == 0)    
+            suff = 1;
+        pre *= arr[i];
+        suff *= arr[n-i-1];
+        maxProduct = max(maxProduct,max(pre,suff));    
+    }
+    return maxProduct;
+}
